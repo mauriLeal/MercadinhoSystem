@@ -1,0 +1,40 @@
+package br.com.mercadinho.mercadinhosystem.Controller;
+
+import br.com.mercadinho.mercadinhosystem.Model.Product;
+import br.com.mercadinho.mercadinhosystem.Service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class ProductController {
+
+    @Autowired
+    private ProductService productService;
+
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@RequestBody Product product){
+        Product createdProduct = productService.createProduct(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> findProductById(@PathVariable Long id){
+        Product getProduct = productService.findProductById(id);
+        return ResponseEntity.ok(getProduct);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product){
+        Product updateProduct = productService.updateProduct(id, product);
+        return ResponseEntity.ok(updateProduct);
+    }
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
+//        Product deleteProduct = productService.deleteProduct(id);
+//        return ResponseEntity
+//
+//    }
+}
