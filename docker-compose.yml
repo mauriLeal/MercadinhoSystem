@@ -1,0 +1,45 @@
+# Define a versão da sintaxe do docker-compose
+version: '3.8'
+
+# Lista de todos os serviços (contêineres) que precisamos
+services:
+
+  # Serviço 1: O Banco de Dados PostgreSQL
+  db:
+    image: postgres:15-alpine  # Usamos a imagem oficial e leve do Postgres
+    container_name: mercadinho-db
+    # Variáveis de ambiente para configurar o banco de dados
+    environment:
+      POSTGRES_DB: mercadinhosystem_db  # Nome do banco de dados a ser criado
+      POSTGRES_USER: postgres          # Usuário do banco
+      POSTGRES_PASSWORD: admin123      # Senha do banco (use uma senha de sua preferência)
+    # Mapeia a porta do contêiner para a sua máquina.
+    # Útil para acessar o banco com ferramentas como DBeaver ou pgAdmin.
+    ports:
+      - "5432:5432"
+    # Garante que os dados do banco não sejam perdidos ao recriar o contêiner
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  # Serviço 2: Sua Aplicação Spring Boot (MercadinhoSystem)
+  app:
+    build: .  # Constrói a imagem a partir do Dockerfile na pasta atual
+    container_name: mercadinho-app
+    # Garante que o banco de dados 'db' inicie ANTES da sua aplicação
+    depends_on:
+      - db
+    # Mapeia a porta da sua aplicação
+    ports:
+      - "8080:8080"
+    # Variáveis de ambiente que sobrescrevem o application.properties
+    environment:
+      # A MÁGICA ACONTECE AQUI:
+      # A URL aponta para 'db' (o nome do serviço do banco), e não para 'localhost'
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mercadinhosystem_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin123 # Deve ser a mesma senha definida no serviço 'db'
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+# Define um volume nomeado para persistir os dados do PostgreSQL
+volumes:
+  postgres-data:

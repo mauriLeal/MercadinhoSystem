@@ -1,0 +1,10 @@
+br\com\mercadinho\mercadinhosystem\Service\UserService.class
+br\com\mercadinho\mercadinhosystem\Model\Roles.class
+br\com\mercadinho\mercadinhosystem\Controller\UserController.class
+br\com\mercadinho\mercadinhosystem\MercadinhoSystemApplication.class
+br\com\mercadinho\mercadinhosystem\Controller\ProductController.class
+br\com\mercadinho\mercadinhosystem\Repository\ProductRepository.class
+br\com\mercadinho\mercadinhosystem\Model\User.class
+br\com\mercadinho\mercadinhosystem\Model\Product.class
+br\com\mercadinho\mercadinhosystem\Repository\UserRepository.class
+br\com\mercadinho\mercadinhosystem\Service\ProductService.class
