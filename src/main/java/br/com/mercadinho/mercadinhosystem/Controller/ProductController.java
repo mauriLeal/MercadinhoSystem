@@ -2,7 +2,7 @@ package br.com.mercadinho.mercadinhosystem.Controller;
 
 import br.com.mercadinho.mercadinhosystem.Model.Product;
 import br.com.mercadinho.mercadinhosystem.Service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +20,8 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody Product product){
-        Product createdProduct = productService.createProduct(product);
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product){
+        Product createdProduct = productService.createOrAddStock(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
 
@@ -37,7 +37,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product){
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id,@Valid @RequestBody Product product){
         Product updateProduct = productService.updateProduct(id, product);
         return ResponseEntity.ok(updateProduct);
     }

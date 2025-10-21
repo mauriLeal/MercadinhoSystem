@@ -16,13 +16,34 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product createProduct(Product product){
-        return productRepository.save(product);
+    public Product createOrAddStock(Product newProductData){
+        Optional<Product> existingProductOpt = productRepository.findByProductNameIgnoreCase(newProductData.getProductName());
+
+        if(existingProductOpt.isPresent()){
+            Product existingProduct = existingProductOpt.get();
+
+            int currentAmount = existingProduct.getProductAmount();
+            int amountToAdd = newProductData.getProductAmount();
+
+            existingProduct.setProductAmount(currentAmount + amountToAdd);
+
+            return productRepository.save(existingProduct);
+        } else {
+            return productRepository.save(newProductData);
+        }
     }
+
+//    public Product createProduct(Product product){
+//        return productRepository.save(product);
+//    }
 
     public Product findProductById(Long id){
         return productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado com o id: "+id));
+    }
+
+    public List<Product> findAllProducts(){
+        return productRepository.findAll();
     }
 
     public Product updateProduct(Long id, Product newProduct){
@@ -43,8 +64,5 @@ public class ProductService {
         productRepository.delete(deleteProduct);
     }
 
-    public List<Product> findAllProducts(){
-        return productRepository.findAll();
-    }
 }
 

@@ -1,6 +1,11 @@
 C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Controller\ProductController.java
+C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Controller\RestExceptionHandler.java
 C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Controller\UserController.java
+C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Dto\UserCreateDTO.java
+C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Dto\UserResponseDTO.java
+C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Dto\UserUpdateDTO.java
 C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\MercadinhoSystemApplication.java
+C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Model\ErrorResponse.java
 C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Model\Product.java
 C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Model\Roles.java
 C:\Users\mauri\IdeaProjects\MercadinhoSystem\src\main\java\br\com\mercadinho\mercadinhosystem\Model\User.java
